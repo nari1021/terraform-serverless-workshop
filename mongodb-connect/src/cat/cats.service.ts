@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { CreateCatDto } from './schemas/dto/create-cat.dto';
-import { Cat } from './schemas/interfaces/cat.interface';
+import { Cat } from './cat.schema';
+import { CreateCatDto } from './create-cat.dto';
 
 @Injectable()
 export class CatsService {
@@ -14,6 +14,7 @@ export class CatsService {
         const createdCat = new this.catModel(createCatDto);
         console.log(createdCat.id);
         console.log(createdCat.name);
+        console.log(createdCat.location);
         return createdCat.save();
     }
 
