@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 
-export class Point {
-    @Prop({ required: true })
-    type: string;
+export class GeoPoint {
+    @Prop({ default: 'Point' })
+    type?: string;
 
-    @Prop({ required: true })
+    @Prop({ required: true, index: '2dsphere' })
     coordinates: number[];
 }
 
@@ -20,8 +20,8 @@ export class Cat {
     @Prop()
     breed: string;
 
-    @Prop({ type: Types.ObjectId, ref: 'Point' })
-    location: Point;
+    @Prop({ type: GeoPoint })
+    location: GeoPoint;
 
     @Prop({ default: Date.now })
     createAt: Date;

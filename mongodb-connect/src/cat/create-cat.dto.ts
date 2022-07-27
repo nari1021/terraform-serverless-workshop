@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsNumber, IsObject, IsString, ValidateNested } from 'class-validator';
 
-export class CreatePointDto {
+export class CreateGeoPointDto {
     @IsString()
     type: string;
 
@@ -21,6 +21,6 @@ export class CreateCatDto {
 
     @IsObject()
     @ValidateNested({ each: true })
-    @Type(() => CreatePointDto)
-    readonly location: CreatePointDto;
+    @Type(() => CreateGeoPointDto)
+    readonly location: CreateGeoPointDto;
 }
